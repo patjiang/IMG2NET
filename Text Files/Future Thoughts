@@ -1,0 +1,28 @@
+
+For changing image orientations:
+https://pyimagesearch.com/2017/01/02/rotate-images-correctly-with-opencv-and-python/
+
+For doing image transformations to get set images:
+https://theailearner.com/tag/cv2-getperspectivetransform/
+
+For doing boundaries of contours(maybe better than gaussian blur? need to investigate)
+https://stackoverflow.com/questions/49915894/finding-the-boundary-points-of-a-contour-in-opencv-numpy
+
+For Time series documentation
+https://buildmedia.readthedocs.org/media/pdf/tslearn/stable/tslearn.pdf
+https://www.cs.unm.edu/~mueen/DTW.pdf
+
+For KNN Time Series documentation
+https://github.com/markdregan/K-Nearest-Neighbors-with-Dynamic-Time-Warping/blob/master/K_Nearest_Neighbor_Dynamic_Time_Warping.ipynb
+
+For scikit?
+https://github.com/scikit-image/scikit-image
+
+For Loading Rasters into nparrays
+https://gis.stackexchange.com/questions/32995/fully-load-raster-into-a-numpy-array
+
+How to sort out noise: Sparse filtering (large data sets), Fourier transforms (to better sort out features in intersections)
+The idea is: all traffic intersections can be represented as superimpositions of multiple images that can be consolidated as simpler graphs. With each lane
+representing a vector, traffic can be best represented mathematically.
+
+Optomizing traffic: Fluid modelling (Data)
