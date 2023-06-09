@@ -1,3 +1,6 @@
+# this code merely polarized a given image while still in raster form,
+#the next steps are to vectorize and fourier transform each image
+
 import numpy as np
 import cv2 as cv
 
