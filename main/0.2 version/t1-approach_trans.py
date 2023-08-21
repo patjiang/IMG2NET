@@ -1,8 +1,9 @@
+import sys
 import numpy as np
 import cv2 as cv
 from EndGame.merge import HoughBundler
 
-src = cv.imread('/Users/patrickjiang/PycharmProjects/researchLab/imgs/47603N.png')
+src = cv.imread('/Users/patrickjiang/PycharmProjects/researchLab/imgs/47603S.png')
 cv.imshow("Start", src)
 
 """
@@ -29,6 +30,7 @@ src5 = np.zeros(src4.shape, dtype = np.uint8)
 # to directly obtain line end points
 lines_list = []
 slope_list = []
+center_list = []
 lines = cv.HoughLinesP(
     src4,  # Input edge image
     1,  # Distance resolution in pixels
@@ -54,26 +56,31 @@ for points in lines:
     # min and max yvals
     ymin = 1
     ymax = dims[0] - 1
+    xmin = 1
+    xmax = dims[1] - 1
+
     # calculate the slope
-    m = (y2 - y1)/ (x2-x1)
+    if x2 == x1:
+        xmax = x2
+        xmin = x1
+        m = sys.maxsize *2 + 1
+
+    else:
+        m = (y2 - y1) / (x2 - x1)
     # calculate the intercept
     b = y2 - m * x2
     # now we have y = mx + b
     # calculate new x value at y = 0 and y = dim(0)
-    if(m != 0):
+    if m != 0:
         xmax = round((ymax - b) / m)
         xmin = round(-b / m)
 
-    elif(x2 == x1):
-        xmax,xmin = x1
-
     else:
-        xmax = dims[1]
+        xmax = dims[1] - 1
         xmin = 0
         ymin = y1
         ymax = y2
 
-    print(xmax)
     cv.line(src5, (xmin, ymin), (xmax, ymax), (255, 0, 0), 2)
     cv.line(src, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
@@ -81,15 +88,14 @@ for points in lines:
     lines_list.append([(xmin, ymin), (xmax, ymax)])
     slope_list.append(m)
 
+
+
 numlines = len(lines_list)
 
 cv.imshow('d', src5)
 cv.imshow('detectedLines.png', src)
 
-
-
-
-
+#############################################
 
 def roi_mask(img, vert):
     mask = np.zeros_like(img)
@@ -116,6 +122,11 @@ def matrix_trans(narray):
     src6 = cv.bitwise_not(src5)
     src7 = np.array(np.where(src6 != 255))
     return src7
+
+
+cv.waitKey(0)
+cv.destroyAllWindows()
+
 
 
 cv.waitKey(0)
