@@ -1,4 +1,4 @@
-# IMG2DTW
+# IMG2Net
 Undergraduate study on how to use python image modification to create a DTW mapping of intersections.
 
 The hope is to create a foundation for image recognition software at understanding human transportation pathways.
